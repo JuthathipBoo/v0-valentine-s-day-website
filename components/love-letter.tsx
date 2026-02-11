@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react"
 import { Heart, Mail, Volume2, VolumeX } from "lucide-react"
 
 const letterParagraphs = [
-  "ถึงคนที่แสนพิเศษ,",
-  "ในทุก ๆ วันที่ผ่านไป เธอทำให้โลกของฉันสว่างขึ้น ทำให้ทุกอย่างมีความหมาย และทำให้หัวใจฉันเต้นแรงขึ้นทุกครั้งที่ได้อยู่ใกล้เธอ",
-  "เธอคือของขวัญที่ดีที่สุดที่ชีวิตมอบให้ เป็นแสงสว่างในวันที่มืดมน เป็นรอยยิ้มในวันที่เหนื่อยล้า และเป็นเหตุผลที่ทำให้ฉันอยากตื่นขึ้นมาทุกเช้า",
-  "ขอบคุณที่เป็นเธอ ขอบคุณที่อยู่ข้าง ๆ ฉันเสมอ ขอบคุณที่รักฉันในแบบที่ฉันเป็น ฉันสัญญาว่าจะรักเธอมากขึ้นทุกวัน ไม่ว่าจะเกิดอะไรขึ้น",
+  "ถึงเบ๊บๆของเค้า,",
+  "Happy Valentine ในปีแรกของเรานะคะ ดีใจนะคับที่อยู่ด้วยกันมาอีกเดือนแล้ว",
+  "เบ๊บๆยังคอยดูแลเค้าเสมอเยย ถึงเค้าจะดื้อไปหน่อย แต่เบ๊บๆก็ยังโอ๋ๆตลอด",
+  "ขอบคุณทุกอย่างที่ทำให้นะคับ เค้าอยู่ข้างๆเบ๊บๆเสมอ",
 ]
 
 export function LoveLetter() {
@@ -46,9 +46,8 @@ export function LoveLetter() {
       className="flex flex-col items-center justify-center px-4 py-8 sm:px-6 sm:py-12"
     >
       <div
-        className={`w-full max-w-lg transition-all duration-1000 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-        }`}
+        className={`w-full max-w-lg transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
       >
         <div className="text-center mb-8 sm:mb-12">
           <Mail className="mx-auto text-primary mb-3 sm:mb-4" size={28} />
@@ -65,9 +64,8 @@ export function LoveLetter() {
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className={`w-full transition-all duration-700 cursor-pointer ${
-              isOpen ? "scale-95 opacity-60" : "scale-100 hover:scale-[1.02] active:scale-[0.98]"
-            }`}
+            className={`w-full transition-all duration-700 cursor-pointer ${isOpen ? "scale-95 opacity-60" : "scale-100 hover:scale-[1.02] active:scale-[0.98]"
+              }`}
             aria-label={isOpen ? "ปิดจดหมาย" : "เปิดจดหมาย"}
           >
             <div className="bg-card border-2 border-border rounded-2xl p-5 sm:p-8 shadow-lg relative overflow-hidden">
@@ -87,9 +85,8 @@ export function LoveLetter() {
 
           {/* Letter Content */}
           <div
-            className={`transition-all duration-700 overflow-hidden ${
-              isOpen ? "max-h-[1000px] opacity-100 mt-4 sm:mt-6" : "max-h-0 opacity-0 mt-0"
-            }`}
+            className={`transition-all duration-700 overflow-hidden ${isOpen ? "max-h-[1000px] opacity-100 mt-4 sm:mt-6" : "max-h-0 opacity-0 mt-0"
+              }`}
           >
             <div className="bg-card border border-border rounded-2xl p-5 sm:p-8 md:p-10 shadow-xl relative">
               {/* Music toggle */}
@@ -122,32 +119,29 @@ export function LoveLetter() {
                 {letterParagraphs.map((paragraph, index) => (
                   <p
                     key={`paragraph-${index}`}
-                    className={`transition-all duration-700 ${
-                      index === 0
-                        ? "font-serif text-xl sm:text-2xl text-primary"
-                        : ""
-                    } ${
-                      revealedParagraphs.has(index)
+                    className={`transition-all duration-700 ${index === 0
+                      ? "font-serif text-xl sm:text-2xl text-primary"
+                      : ""
+                      } ${revealedParagraphs.has(index)
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-4"
-                    }`}
+                      }`}
                   >
                     {paragraph}
                   </p>
                 ))}
 
                 <p
-                  className={`font-serif text-lg sm:text-xl text-primary pt-3 sm:pt-4 transition-all duration-700 ${
-                    revealedParagraphs.has(letterParagraphs.length - 1)
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-4"
-                  }`}
+                  className={`font-serif text-lg sm:text-xl text-primary pt-3 sm:pt-4 transition-all duration-700 ${revealedParagraphs.has(letterParagraphs.length - 1)
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4"
+                    }`}
                   style={{ transitionDelay: `${letterParagraphs.length * 400}ms` }}
                 >
-                  {"รักเธอเสมอ,"}
+                  {"รักเบ๊บๆเสมอ,"}
                   <br />
                   <span className="text-foreground text-base sm:text-lg">
-                    {"จากคนที่รักเธอที่สุด"}
+                    {"จากคนที่เบ๊บๆรักที่สุด"}
                   </span>
                 </p>
               </div>

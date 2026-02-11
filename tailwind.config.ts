@@ -63,7 +63,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-itim)', 'sans-serif'],
+        sans: ['var(--font-noto-sans-thai)', 'sans-serif'],
         serif: ['var(--font-caveat)', 'cursive'],
       },
       borderRadius: {

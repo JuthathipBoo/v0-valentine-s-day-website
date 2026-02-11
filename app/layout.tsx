@@ -1,15 +1,15 @@
 import React from "react"
 import type { Metadata, Viewport } from "next"
-import { Itim, Caveat } from "next/font/google"
+import { Noto_Sans_Thai, Caveat } from "next/font/google"
 
 import "./globals.css"
 import { FloatingHearts } from "@/components/floating-hearts"
 import { PageNav } from "@/components/page-nav"
 
-const _itim = Itim({
+const _notoSansThai = Noto_Sans_Thai({
   subsets: ["thai", "latin"],
-  weight: "400",
-  variable: "--font-itim",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-noto-sans-thai",
 })
 const _caveat = Caveat({
   subsets: ["latin"],
