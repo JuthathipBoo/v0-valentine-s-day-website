@@ -13,7 +13,7 @@ export function PageWrapper({ children }: { children: React.ReactNode }) {
 
   return (
     <div
-      className={`min-h-screen pt-14 pb-16 transition-all duration-700 ${
+      className={`min-h-screen pt-12 pb-14 sm:pt-14 sm:pb-16 transition-all duration-700 ${
         mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       }`}
     >

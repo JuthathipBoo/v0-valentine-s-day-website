@@ -40,7 +40,7 @@ export function LoveQuiz() {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true)
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     )
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
@@ -53,7 +53,6 @@ export function LoveQuiz() {
     const isCorrect = optionIndex === questions[currentQ].answer
     if (isCorrect) {
       setScore((s) => s + 1)
-      // Spawn confetti
       const newConfetti = Array.from({ length: 12 }, (_, i) => ({
         id: Date.now() + i,
         x: Math.random() * 100,
@@ -86,28 +85,28 @@ export function LoveQuiz() {
   const q = questions[currentQ]
 
   return (
-    <section id="quiz" ref={ref} className="px-6 py-20 max-w-lg mx-auto">
+    <section id="quiz" ref={ref} className="px-4 py-10 sm:px-6 sm:py-20 max-w-lg mx-auto">
       <div
         className={`transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="text-center mb-10">
-          <MessageCircleHeart className="mx-auto text-primary mb-4" size={32} />
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-3 text-balance">
+        <div className="text-center mb-6 sm:mb-10">
+          <MessageCircleHeart className="mx-auto text-primary mb-3 sm:mb-4" size={28} />
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-foreground mb-2 sm:mb-3 text-balance">
             {"เธอรู้จักฉันดีแค่ไหน?"}
           </h2>
-          <p className="text-muted-foreground font-sans text-sm">
+          <p className="text-muted-foreground font-sans text-xs sm:text-sm">
             {"ลองตอบคำถามเหล่านี้ดูสิ"}
           </p>
         </div>
 
-        <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg relative overflow-hidden">
+        <div className="bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg relative overflow-hidden">
           {/* Mini confetti */}
           {confetti.map((c) => (
             <div
               key={c.id}
-              className="absolute w-2 h-2 rounded-full animate-fade-in-up pointer-events-none"
+              className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full animate-fade-in-up pointer-events-none"
               style={{
                 left: `${c.x}%`,
                 top: `${c.y}%`,
@@ -120,26 +119,26 @@ export function LoveQuiz() {
           {!showResult ? (
             <>
               {/* Progress */}
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-1.5 sm:gap-2 mb-4 sm:mb-6">
                 {questions.map((_, i) => (
                   <div
                     key={`progress-${i}`}
-                    className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${
+                    className={`h-1 sm:h-1.5 flex-1 rounded-full transition-colors duration-300 ${
                       i <= currentQ ? "bg-primary" : "bg-border"
                     }`}
                   />
                 ))}
               </div>
 
-              <p className="text-muted-foreground font-sans text-xs mb-2">
+              <p className="text-muted-foreground font-sans text-[10px] sm:text-xs mb-1.5 sm:mb-2">
                 {"คำถามที่"} {currentQ + 1} / {questions.length}
               </p>
 
-              <h3 className="font-serif text-xl md:text-2xl text-foreground mb-6">
+              <h3 className="font-serif text-lg sm:text-xl md:text-2xl text-foreground mb-4 sm:mb-6">
                 {q.question}
               </h3>
 
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2 sm:gap-3">
                 {q.options.map((option, i) => {
                   const isAnswer = i === q.answer
                   const isSelected = i === selected
@@ -161,15 +160,15 @@ export function LoveQuiz() {
                       type="button"
                       onClick={() => handleSelect(i)}
                       disabled={selected !== null}
-                      className={`w-full text-left px-5 py-4 rounded-xl font-sans transition-all duration-300 ${optionStyle} ${
+                      className={`w-full text-left px-4 py-3 sm:px-5 sm:py-4 rounded-lg sm:rounded-xl font-sans transition-all duration-300 active:scale-[0.98] ${optionStyle} ${
                         selected === null ? "cursor-pointer" : "cursor-default"
                       }`}
                     >
-                      <span className="flex items-center gap-3">
-                        <span className="w-7 h-7 rounded-full bg-background/50 flex items-center justify-center text-xs font-medium shrink-0">
+                      <span className="flex items-center gap-2.5 sm:gap-3">
+                        <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-background/50 flex items-center justify-center text-[10px] sm:text-xs font-medium shrink-0">
                           {String.fromCharCode(65 + i)}
                         </span>
-                        {option}
+                        <span className="text-xs sm:text-sm">{option}</span>
                       </span>
                     </button>
                   )
@@ -177,28 +176,28 @@ export function LoveQuiz() {
               </div>
             </>
           ) : (
-            <div className="text-center py-6">
-              <div className="flex items-center justify-center gap-1 mb-6">
+            <div className="text-center py-4 sm:py-6">
+              <div className="flex items-center justify-center gap-1 mb-4 sm:mb-6">
                 {[...Array(4)].map((_, i) => (
                   <Heart
                     key={`result-heart-${i}`}
-                    size={28}
-                    className="text-primary animate-pulse-soft"
+                    size={22}
+                    className="text-primary animate-pulse-soft sm:[&]:w-7 sm:[&]:h-7"
                     fill={i < score ? "hsl(346, 60%, 55%)" : "none"}
                     style={{ animationDelay: `${i * 0.2}s` }}
                   />
                 ))}
               </div>
 
-              <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-3">
+              <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-foreground mb-2 sm:mb-3">
                 {score === 4 ? "เธอเข้าใจฉันที่สุดเลย!" : score >= 2 ? "เธอรู้จักฉันดีมาก!" : "มาทำความรู้จักกันเพิ่มนะ"}
               </h3>
 
-              <p className="text-muted-foreground font-sans mb-2">
+              <p className="text-muted-foreground font-sans text-xs sm:text-sm mb-1.5 sm:mb-2">
                 {"ตอบถูก"} {score} / {questions.length} {"ข้อ"}
               </p>
 
-              <p className="font-sans text-primary text-lg mb-8">
+              <p className="font-sans text-primary text-sm sm:text-lg mb-6 sm:mb-8">
                 {score === 4
                   ? "เธอคือคนที่รู้ใจฉันมากที่สุด"
                   : "แต่ไม่ว่ายังไง ฉันก็รักเธอเสมอ"}
@@ -207,7 +206,7 @@ export function LoveQuiz() {
               <button
                 type="button"
                 onClick={reset}
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-sans text-sm hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 sm:px-6 sm:py-3 rounded-full font-sans text-xs sm:text-sm hover:opacity-90 active:scale-95 transition-all"
               >
                 <RotateCcw size={14} />
                 {"เล่นอีกครั้ง"}

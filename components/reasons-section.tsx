@@ -56,7 +56,7 @@ export function ReasonsSection() {
             setVisibleCards((prev) => new Set([...prev, index]))
           }
         },
-        { threshold: 0.2 }
+        { threshold: 0.15 }
       )
       observer.observe(ref)
       return observer
@@ -74,18 +74,18 @@ export function ReasonsSection() {
   }
 
   return (
-    <section id="reasons" className="px-6 py-20 max-w-5xl mx-auto">
-      <div className="text-center mb-16">
-        <Sparkles className="mx-auto text-accent mb-4" size={32} />
-        <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-3 text-balance">
+    <section id="reasons" className="px-4 py-10 sm:px-6 sm:py-20 max-w-5xl mx-auto">
+      <div className="text-center mb-8 sm:mb-16">
+        <Sparkles className="mx-auto text-accent mb-3 sm:mb-4" size={28} />
+        <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl text-foreground mb-2 sm:mb-3 text-balance">
           {"เหตุผลที่รักเธอ"}
         </h2>
-        <p className="text-muted-foreground font-sans">
+        <p className="text-muted-foreground font-sans text-xs sm:text-sm">
           {"กดการ์ดแต่ละใบเพื่ออ่านเหตุผล..."}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
         {reasons.map((reason, index) => {
           const Icon = reason.icon
           const isFlipped = flipped.has(index)
@@ -106,7 +106,7 @@ export function ReasonsSection() {
               <button
                 type="button"
                 onClick={() => toggleFlip(index)}
-                className="relative w-full h-52 cursor-pointer"
+                className="relative w-full h-40 sm:h-52 cursor-pointer"
                 style={{
                   transformStyle: "preserve-3d",
                   transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -116,30 +116,30 @@ export function ReasonsSection() {
               >
                 {/* Front */}
                 <div
-                  className="absolute inset-0 bg-card border border-border rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-lg transition-shadow"
+                  className="absolute inset-0 bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center text-center shadow-sm"
                   style={{ backfaceVisibility: "hidden" }}
                 >
-                  <div className="w-14 h-14 rounded-full bg-secondary flex items-center justify-center mb-4">
-                    <Icon size={24} className="text-primary" />
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-secondary flex items-center justify-center mb-2 sm:mb-4">
+                    <Icon size={18} className="text-primary sm:[&]:w-6 sm:[&]:h-6" />
                   </div>
-                  <h3 className="font-serif text-xl text-foreground mb-2">
+                  <h3 className="font-serif text-sm sm:text-xl text-foreground mb-1 sm:mb-2">
                     {reason.title}
                   </h3>
-                  <p className="text-muted-foreground font-sans text-xs">
+                  <p className="text-muted-foreground font-sans text-[10px] sm:text-xs">
                     {reason.front}
                   </p>
                 </div>
 
                 {/* Back */}
                 <div
-                  className="absolute inset-0 bg-primary rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-lg"
+                  className="absolute inset-0 bg-primary rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center text-center shadow-lg"
                   style={{
                     backfaceVisibility: "hidden",
                     transform: "rotateY(180deg)",
                   }}
                 >
-                  <Icon size={20} className="text-primary-foreground mb-3 opacity-60" />
-                  <p className="text-primary-foreground font-sans text-sm leading-relaxed">
+                  <Icon size={16} className="text-primary-foreground mb-2 sm:mb-3 opacity-60" />
+                  <p className="text-primary-foreground font-sans text-[11px] sm:text-sm leading-relaxed">
                     {reason.back}
                   </p>
                 </div>
@@ -149,7 +149,7 @@ export function ReasonsSection() {
         })}
       </div>
 
-      <p className="text-center text-muted-foreground font-sans text-xs mt-8">
+      <p className="text-center text-muted-foreground font-sans text-[10px] sm:text-xs mt-6 sm:mt-8">
         {"กดการ์ดอีกครั้งเพื่อพลิกกลับ"}
       </p>
     </section>

@@ -18,7 +18,7 @@ export function ScratchCard() {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true)
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
@@ -36,24 +36,23 @@ export function ScratchCard() {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    // Draw cover
     ctx.fillStyle = "hsl(346, 60%, 55%)"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-    // Add pattern
     ctx.globalAlpha = 0.15
-    for (let i = 0; i < 30; i++) {
+    const heartCount = canvas.width < 300 ? 15 : 30
+    for (let i = 0; i < heartCount; i++) {
       const x = Math.random() * canvas.width
       const y = Math.random() * canvas.height
-      ctx.font = `${Math.random() * 16 + 12}px serif`
+      ctx.font = `${Math.random() * 14 + 10}px serif`
       ctx.fillStyle = "#fff"
       ctx.fillText("\u2764", x, y)
     }
     ctx.globalAlpha = 1
 
-    // Add text
     ctx.fillStyle = "#fff"
-    ctx.font = "bold 18px sans-serif"
+    const fontSize = canvas.width < 300 ? 14 : 18
+    ctx.font = `bold ${fontSize}px sans-serif`
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
     ctx.fillText("\u0E02\u0E39\u0E14\u0E15\u0E23\u0E07\u0E19\u0E35\u0E49\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E40\u0E1B\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E25\u0E31\u0E1A", canvas.width / 2, canvas.height / 2)
@@ -76,12 +75,12 @@ export function ScratchCard() {
     const cx = x - rect.left
     const cy = y - rect.top
 
+    const radius = canvas.width < 300 ? 20 : 25
     ctx.globalCompositeOperation = "destination-out"
     ctx.beginPath()
-    ctx.arc(cx, cy, 25, 0, Math.PI * 2)
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2)
     ctx.fill()
 
-    // Check reveal percentage
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
     let cleared = 0
     for (let i = 3; i < imageData.data.length; i += 4) {
@@ -109,35 +108,35 @@ export function ScratchCard() {
   }
 
   return (
-    <section ref={sectionRef} className="px-6 py-20 max-w-lg mx-auto">
+    <section ref={sectionRef} className="px-4 py-10 sm:px-6 sm:py-20 max-w-lg mx-auto">
       <div
         className={`transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="text-center mb-10">
-          <Sparkles className="mx-auto text-accent mb-4" size={32} />
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-3 text-balance">
+        <div className="text-center mb-6 sm:mb-10">
+          <Sparkles className="mx-auto text-accent mb-3 sm:mb-4" size={28} />
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-foreground mb-2 sm:mb-3 text-balance">
             {"ข้อความลับ"}
           </h2>
-          <p className="text-muted-foreground font-sans text-sm">
-            {"ขูดเพื่อเปิดข้อความลับ..."}
+          <p className="text-muted-foreground font-sans text-xs sm:text-sm">
+            {"ใช้นิ้วขูดเพื่อเปิดข้อความลับ..."}
           </p>
         </div>
 
         <div
           ref={containerRef}
-          className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden border-2 border-border shadow-lg select-none touch-none"
+          className="relative w-full aspect-[4/3] sm:aspect-[3/2] rounded-xl sm:rounded-2xl overflow-hidden border-2 border-border shadow-lg select-none touch-none"
         >
           {/* Hidden message */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-card p-6 text-center">
-            <p className="font-serif text-2xl md:text-3xl text-primary mb-3 text-balance">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-card p-4 sm:p-6 text-center">
+            <p className="font-serif text-xl sm:text-2xl md:text-3xl text-primary mb-2 sm:mb-3 text-balance">
               {"เธอคือคนที่ดีที่สุด"}
             </p>
-            <p className="font-sans text-muted-foreground text-sm leading-relaxed max-w-xs">
+            <p className="font-sans text-muted-foreground text-xs sm:text-sm leading-relaxed max-w-xs">
               {"ในจักรวาลที่กว้างใหญ่ ฉันโชคดีที่สุดที่ได้เจอเธอ"}
             </p>
-            <p className="font-serif text-lg text-primary mt-4">
+            <p className="font-serif text-base sm:text-lg text-primary mt-3 sm:mt-4">
               {"I love you 3000"}
             </p>
           </div>
@@ -159,11 +158,11 @@ export function ScratchCard() {
         </div>
 
         {isRevealed && (
-          <div className="text-center mt-6">
+          <div className="text-center mt-4 sm:mt-6">
             <button
               type="button"
               onClick={handleReset}
-              className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-6 py-3 rounded-full font-sans text-sm hover:opacity-80 transition-opacity"
+              className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-5 py-2.5 sm:px-6 sm:py-3 rounded-full font-sans text-xs sm:text-sm hover:opacity-80 active:scale-95 transition-all"
             >
               <Sparkles size={14} />
               {"ขูดอีกครั้ง"}

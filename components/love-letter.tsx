@@ -22,7 +22,7 @@ export function LoveLetter() {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true)
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     )
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
@@ -43,43 +43,43 @@ export function LoveLetter() {
   return (
     <section
       ref={ref}
-      className="flex flex-col items-center justify-center px-6 py-12"
+      className="flex flex-col items-center justify-center px-4 py-8 sm:px-6 sm:py-12"
     >
       <div
-        className={`transition-all duration-1000 ${
+        className={`w-full max-w-lg transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="text-center mb-12">
-          <Mail className="mx-auto text-primary mb-4" size={36} />
-          <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-3">
+        <div className="text-center mb-8 sm:mb-12">
+          <Mail className="mx-auto text-primary mb-3 sm:mb-4" size={28} />
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl text-foreground mb-2 sm:mb-3">
             {"จดหมายรัก"}
           </h2>
-          <p className="text-muted-foreground font-sans">
+          <p className="text-muted-foreground font-sans text-xs sm:text-sm">
             {"กดซองจดหมายเพื่อเปิดอ่าน..."}
           </p>
         </div>
 
-        <div className="relative max-w-lg mx-auto">
+        <div className="relative">
           {/* Envelope */}
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
             className={`w-full transition-all duration-700 cursor-pointer ${
-              isOpen ? "scale-95 opacity-60" : "scale-100 hover:scale-105"
+              isOpen ? "scale-95 opacity-60" : "scale-100 hover:scale-[1.02] active:scale-[0.98]"
             }`}
             aria-label={isOpen ? "ปิดจดหมาย" : "เปิดจดหมาย"}
           >
-            <div className="bg-card border-2 border-border rounded-2xl p-8 shadow-lg relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-2 bg-primary opacity-50" />
+            <div className="bg-card border-2 border-border rounded-2xl p-5 sm:p-8 shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1.5 sm:h-2 bg-primary opacity-50" />
               <div className="flex items-center justify-center gap-2">
-                <Heart size={20} className="text-primary" fill="hsl(346, 60%, 55%)" />
-                <span className="font-serif text-xl text-foreground">
+                <Heart size={16} className="text-primary sm:[&]:w-5 sm:[&]:h-5" fill="hsl(346, 60%, 55%)" />
+                <span className="font-serif text-lg sm:text-xl text-foreground">
                   {"ถึงคนที่รักที่สุด"}
                 </span>
-                <Heart size={20} className="text-primary" fill="hsl(346, 60%, 55%)" />
+                <Heart size={16} className="text-primary sm:[&]:w-5 sm:[&]:h-5" fill="hsl(346, 60%, 55%)" />
               </div>
-              <p className="text-muted-foreground text-sm mt-2 font-sans">
+              <p className="text-muted-foreground text-xs sm:text-sm mt-1.5 sm:mt-2 font-sans">
                 {isOpen ? "กดเพื่อปิด" : "กดเพื่อเปิดอ่าน"}
               </p>
             </div>
@@ -88,43 +88,43 @@ export function LoveLetter() {
           {/* Letter Content */}
           <div
             className={`transition-all duration-700 overflow-hidden ${
-              isOpen ? "max-h-[1000px] opacity-100 mt-6" : "max-h-0 opacity-0 mt-0"
+              isOpen ? "max-h-[1000px] opacity-100 mt-4 sm:mt-6" : "max-h-0 opacity-0 mt-0"
             }`}
           >
-            <div className="bg-card border border-border rounded-2xl p-8 md:p-10 shadow-xl relative">
+            <div className="bg-card border border-border rounded-2xl p-5 sm:p-8 md:p-10 shadow-xl relative">
               {/* Music toggle */}
               <button
                 type="button"
                 onClick={() => setIsMuted(!isMuted)}
-                className="absolute top-4 left-4 w-8 h-8 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/20 transition-colors"
+                className="absolute top-3 left-3 sm:top-4 sm:left-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/20 transition-colors"
                 aria-label={isMuted ? "เปิดเสียง" : "ปิดเสียง"}
               >
                 {isMuted ? (
-                  <VolumeX size={14} className="text-muted-foreground" />
+                  <VolumeX size={12} className="text-muted-foreground" />
                 ) : (
-                  <Volume2 size={14} className="text-primary" />
+                  <Volume2 size={12} className="text-primary" />
                 )}
               </button>
 
               {/* Decorative corner hearts */}
               <Heart
-                size={16}
-                className="absolute top-4 right-4 text-primary opacity-30"
+                size={14}
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 text-primary opacity-30"
                 fill="hsl(346, 60%, 55%)"
               />
               <Heart
-                size={12}
-                className="absolute bottom-4 left-4 text-primary opacity-30"
+                size={10}
+                className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 text-primary opacity-30"
                 fill="hsl(346, 60%, 55%)"
               />
 
-              <div className="space-y-5 font-sans text-foreground leading-relaxed mt-4">
+              <div className="space-y-4 sm:space-y-5 font-sans text-foreground leading-relaxed mt-3 sm:mt-4 text-sm sm:text-base">
                 {letterParagraphs.map((paragraph, index) => (
                   <p
                     key={`paragraph-${index}`}
                     className={`transition-all duration-700 ${
                       index === 0
-                        ? "font-serif text-2xl text-primary"
+                        ? "font-serif text-xl sm:text-2xl text-primary"
                         : ""
                     } ${
                       revealedParagraphs.has(index)
@@ -137,7 +137,7 @@ export function LoveLetter() {
                 ))}
 
                 <p
-                  className={`font-serif text-xl text-primary pt-4 transition-all duration-700 ${
+                  className={`font-serif text-lg sm:text-xl text-primary pt-3 sm:pt-4 transition-all duration-700 ${
                     revealedParagraphs.has(letterParagraphs.length - 1)
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-4"
@@ -146,7 +146,7 @@ export function LoveLetter() {
                 >
                   {"รักเธอเสมอ,"}
                   <br />
-                  <span className="text-foreground text-lg">
+                  <span className="text-foreground text-base sm:text-lg">
                     {"จากคนที่รักเธอที่สุด"}
                   </span>
                 </p>

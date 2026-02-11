@@ -71,38 +71,38 @@ export default function Page() {
   }, [])
 
   return (
-    <main className="min-h-screen flex flex-col items-center px-6 py-16">
+    <main className="min-h-screen flex flex-col items-center px-4 py-10 sm:px-6 sm:py-16">
       {/* Hero */}
       <div
-        className={`text-center mb-16 transition-all duration-1000 ${
+        className={`text-center mb-10 sm:mb-16 transition-all duration-1000 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
-        <div className="flex items-center justify-center gap-3 mb-6">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
           <Heart
             className="text-primary animate-pulse-soft"
-            size={28}
+            size={20}
             fill="hsl(346, 60%, 55%)"
           />
           <Heart
             className="text-primary animate-pulse-soft"
-            size={44}
+            size={32}
             fill="hsl(346, 60%, 55%)"
             style={{ animationDelay: "0.3s" }}
           />
           <Heart
             className="text-primary animate-pulse-soft"
-            size={28}
+            size={20}
             fill="hsl(346, 60%, 55%)"
             style={{ animationDelay: "0.6s" }}
           />
         </div>
 
-        <p className="text-muted-foreground font-sans text-sm tracking-[0.3em] uppercase mb-4">
+        <p className="text-muted-foreground font-sans text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4">
           February 14, 2026
         </p>
 
-        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-foreground leading-tight mb-6 text-balance">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl text-foreground leading-tight mb-4 sm:mb-6 text-balance">
           Happy
           <br />
           <span className="text-primary">{"Valentine's"}</span>
@@ -110,7 +110,7 @@ export default function Page() {
           Day
         </h1>
 
-        <p className="font-sans text-lg md:text-xl text-muted-foreground max-w-md mx-auto leading-relaxed">
+        <p className="font-sans text-base sm:text-lg md:text-xl text-muted-foreground max-w-xs sm:max-w-md mx-auto leading-relaxed">
           {"สำหรับคนพิเศษที่ทำให้ทุกวันเป็นวันแห่งความรัก"}
         </p>
       </div>
@@ -118,21 +118,21 @@ export default function Page() {
       {/* Page cards grid */}
       <div className="w-full max-w-4xl">
         <p
-          className={`text-center font-sans text-sm text-muted-foreground mb-8 transition-all duration-700 ${
+          className={`text-center font-sans text-xs sm:text-sm text-muted-foreground mb-6 sm:mb-8 transition-all duration-700 ${
             cardsVisible ? "opacity-100" : "opacity-0"
           }`}
         >
           {"เลือกกดเปิดดูแต่ละหน้าได้เลยนะ"}
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           {pages.map((page, index) => {
             const Icon = page.icon
             return (
               <Link
                 key={page.href}
                 href={page.href}
-                className={`group relative overflow-hidden bg-card border border-border rounded-2xl p-6 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-primary/30 ${
+                className={`group relative overflow-hidden bg-card border border-border rounded-2xl p-4 sm:p-6 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-primary/30 active:scale-[0.98] ${
                   cardsVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -144,26 +144,26 @@ export default function Page() {
                   className={`absolute inset-0 bg-gradient-to-br ${page.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                 />
 
-                <div className="relative flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <div className="relative flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-secondary flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
                     <Icon
-                      size={22}
-                      className="text-primary group-hover:scale-110 transition-transform duration-300"
+                      size={20}
+                      className="text-primary group-hover:scale-110 transition-transform duration-300 sm:[&]:w-[22px] sm:[&]:h-[22px]"
                     />
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-serif text-lg text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
+                    <h3 className="font-serif text-base sm:text-lg text-foreground mb-0.5 sm:mb-1 group-hover:text-primary transition-colors duration-300">
                       {page.title}
                     </h3>
-                    <p className="font-sans text-sm text-muted-foreground leading-relaxed">
+                    <p className="font-sans text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2">
                       {page.desc}
                     </p>
                   </div>
 
                   <ArrowRight
-                    size={18}
-                    className="text-muted-foreground shrink-0 mt-1 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300"
+                    size={16}
+                    className="text-muted-foreground shrink-0 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 sm:[&]:w-[18px] sm:[&]:h-[18px]"
                   />
                 </div>
               </Link>
@@ -174,16 +174,16 @@ export default function Page() {
 
       {/* Footer */}
       <div
-        className={`mt-16 text-center transition-all duration-700 delay-700 ${
+        className={`mt-10 sm:mt-16 text-center transition-all duration-700 delay-700 ${
           cardsVisible ? "opacity-100" : "opacity-0"
         }`}
       >
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <Heart size={14} className="text-primary" fill="hsl(346, 60%, 55%)" />
-          <Heart size={18} className="text-primary" fill="hsl(346, 60%, 55%)" />
-          <Heart size={14} className="text-primary" fill="hsl(346, 60%, 55%)" />
+        <div className="flex items-center justify-center gap-2 mb-2 sm:mb-3">
+          <Heart size={12} className="text-primary" fill="hsl(346, 60%, 55%)" />
+          <Heart size={16} className="text-primary" fill="hsl(346, 60%, 55%)" />
+          <Heart size={12} className="text-primary" fill="hsl(346, 60%, 55%)" />
         </div>
-        <p className="font-serif text-sm text-foreground">Made with love</p>
+        <p className="font-serif text-xs sm:text-sm text-foreground">Made with love</p>
       </div>
     </main>
   )

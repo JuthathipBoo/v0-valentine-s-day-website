@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-interface Heart {
+interface HeartData {
   id: number
   left: number
   size: number
@@ -12,16 +12,18 @@ interface Heart {
 }
 
 export function FloatingHearts() {
-  const [hearts, setHearts] = useState<Heart[]>([])
+  const [hearts, setHearts] = useState<HeartData[]>([])
 
   useEffect(() => {
-    const generated: Heart[] = Array.from({ length: 20 }, (_, i) => ({
+    const isMobile = window.innerWidth < 640
+    const count = isMobile ? 10 : 20
+    const generated: HeartData[] = Array.from({ length: count }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
-      size: Math.random() * 20 + 12,
+      size: isMobile ? Math.random() * 14 + 8 : Math.random() * 20 + 12,
       delay: Math.random() * 8,
       duration: Math.random() * 4 + 5,
-      opacity: Math.random() * 0.4 + 0.15,
+      opacity: Math.random() * 0.3 + 0.1,
     }))
     setHearts(generated)
   }, [])
