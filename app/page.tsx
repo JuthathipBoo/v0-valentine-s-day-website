@@ -8,7 +8,6 @@ import {
   Camera,
   Sparkles,
   MessageCircleHeart,
-  Clock,
   ArrowRight,
 } from "lucide-react"
 
@@ -48,13 +47,7 @@ const pages = [
     desc: "ตอบคำถามเกี่ยวกับเราสองคน",
     color: "from-primary/20 to-accent/10",
   },
-  {
-    href: "/timeline",
-    icon: Clock,
-    title: "เรื่องราวของเรา",
-    desc: "ไทม์ไลน์ช่วงเวลาสำคัญที่มีด้วยกัน",
-    color: "from-accent/20 to-primary/5",
-  },
+
 ]
 
 export default function Page() {

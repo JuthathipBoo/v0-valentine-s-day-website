@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { Heart, Home, Mail, Camera, Sparkles, MessageCircleHeart, Clock, ArrowLeft } from "lucide-react"
+import { Heart, Home, Mail, Camera, Sparkles, MessageCircleHeart, ArrowLeft } from "lucide-react"
 
 const routes = [
   { href: "/", icon: Home, label: "Home" },
@@ -11,7 +11,6 @@ const routes = [
   { href: "/reasons", icon: Sparkles, label: "เหตุผล" },
   { href: "/scratch", icon: Heart, label: "ข้อความลับ" },
   { href: "/quiz", icon: MessageCircleHeart, label: "ควิซ" },
-  { href: "/timeline", icon: Clock, label: "เรื่องราว" },
 ]
 
 export function PageNav() {
