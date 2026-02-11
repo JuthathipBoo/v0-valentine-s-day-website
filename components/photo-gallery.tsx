@@ -63,65 +63,70 @@ export function PhotoGallery() {
     return () => window.removeEventListener("keydown", handleKey)
   }, [selectedIndex, goNext, goPrev])
 
-  // Lock body scroll when lightbox is open
   useEffect(() => {
     if (selectedIndex !== null) {
       document.body.style.overflow = "hidden"
     } else {
       document.body.style.overflow = ""
     }
-    return () => { document.body.style.overflow = "" }
+    return () => {
+      document.body.style.overflow = ""
+    }
   }, [selectedIndex])
 
   return (
-    <section id="gallery" ref={ref} className="px-4 py-10 sm:px-6 sm:py-20 max-w-5xl mx-auto">
-      <div className="text-center mb-8 sm:mb-16">
-        <Camera className="mx-auto text-primary mb-3 sm:mb-4" size={28} />
-        <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl text-foreground mb-2 sm:mb-3 text-balance">
+    <section ref={ref} className="px-5 py-10 sm:px-6 sm:py-16 max-w-lg mx-auto">
+      {/* Header */}
+      <div className="text-center mb-8 sm:mb-10">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-accent/20 flex items-center justify-center mx-auto mb-4">
+          <Camera className="text-accent" size={22} />
+        </div>
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground mb-2 text-balance">
           {"ความทรงจำของเรา"}
         </h2>
-        <p className="text-muted-foreground font-sans text-xs sm:text-sm">
+        <p className="text-muted-foreground font-sans text-xs sm:text-sm font-light">
           {"กดที่รูปเพื่อดูเต็ม ๆ"}
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
+      {/* Photo grid */}
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
         {photos.map((photo, index) => (
           <button
             key={photo.src}
             type="button"
             onClick={() => setSelectedIndex(index)}
-            className={`group relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-xl active:scale-[0.97] ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            className={`group relative aspect-[4/5] rounded-xl overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-lg active:scale-[0.97] ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
-            style={{ transitionDelay: `${index * 100}ms` }}
+            style={{ transitionDelay: `${index * 80}ms` }}
           >
             <Image
               src={photo.src || "/placeholder.svg"}
               alt={photo.caption}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300" />
+            <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
 
-            {/* Caption -- always visible on mobile, hover on desktop */}
-            <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-foreground/60 to-transparent sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
-              <p className="text-primary-foreground font-sans text-[10px] sm:text-xs md:text-sm text-left leading-tight">
+            {/* Caption overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-2.5 bg-gradient-to-t from-foreground/50 to-transparent">
+              <p className="text-primary-foreground font-sans text-[10px] sm:text-xs text-left leading-snug font-light">
                 {photo.caption}
               </p>
             </div>
 
-            {/* Like button -- always visible on mobile */}
+            {/* Like button */}
             <button
               type="button"
               onClick={(e) => toggleLike(index, e)}
-              className="absolute top-2 right-2 sm:top-3 sm:right-3 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-card/80 backdrop-blur-sm flex items-center justify-center sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 hover:scale-110 active:scale-95"
+              className="absolute top-2 right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-card/70 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label={liked.has(index) ? "เอาหัวใจออก" : "กดหัวใจ"}
             >
               <Heart
-                size={14}
+                size={13}
                 className={liked.has(index) ? "text-primary" : "text-muted-foreground"}
-                fill={liked.has(index) ? "hsl(346, 60%, 55%)" : "none"}
+                fill={liked.has(index) ? "hsl(346, 55%, 52%)" : "none"}
               />
             </button>
           </button>
@@ -131,7 +136,7 @@ export function PhotoGallery() {
       {/* Lightbox */}
       {selectedIndex !== null && (
         <div
-          className="fixed inset-0 z-[60] bg-foreground/90 flex items-center justify-center p-2 sm:p-4"
+          className="fixed inset-0 z-[60] bg-foreground/90 flex items-center justify-center p-3 sm:p-4"
           onClick={() => setSelectedIndex(null)}
           onKeyDown={(e) => e.key === "Escape" && setSelectedIndex(null)}
           role="dialog"
@@ -141,7 +146,7 @@ export function PhotoGallery() {
           <button
             type="button"
             onClick={() => setSelectedIndex(null)}
-            className="absolute top-3 right-3 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-card/40 transition-colors z-10"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 rounded-full bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-primary-foreground/25 transition-colors z-10"
             aria-label="ปิด"
           >
             <X size={18} />
@@ -149,8 +154,11 @@ export function PhotoGallery() {
 
           <button
             type="button"
-            onClick={(e) => { e.stopPropagation(); goPrev() }}
-            className="absolute left-2 sm:left-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-card/40 transition-colors z-10"
+            onClick={(e) => {
+              e.stopPropagation()
+              goPrev()
+            }}
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-primary-foreground/25 transition-colors z-10"
             aria-label="รูปก่อนหน้า"
           >
             <ChevronLeft size={20} />
@@ -158,15 +166,18 @@ export function PhotoGallery() {
 
           <button
             type="button"
-            onClick={(e) => { e.stopPropagation(); goNext() }}
-            className="absolute right-2 sm:right-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-card/40 transition-colors z-10"
+            onClick={(e) => {
+              e.stopPropagation()
+              goNext()
+            }}
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-primary-foreground/25 transition-colors z-10"
             aria-label="รูปถัดไป"
           >
             <ChevronRight size={20} />
           </button>
 
           <div
-            className="relative w-full max-w-3xl aspect-[3/4] sm:aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden"
+            className="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
@@ -175,27 +186,29 @@ export function PhotoGallery() {
               fill
               className="object-cover"
             />
-            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-foreground/70 to-transparent">
-              <div className="flex items-center justify-between gap-2">
-                <p className="text-primary-foreground font-sans text-sm sm:text-base md:text-lg leading-snug">
-                  {photos[selectedIndex].caption}
-                </p>
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 bg-gradient-to-t from-foreground/70 to-transparent">
+              <div className="flex items-end justify-between gap-3">
+                <div>
+                  <p className="text-primary-foreground font-sans text-sm sm:text-base leading-snug">
+                    {photos[selectedIndex].caption}
+                  </p>
+                  <p className="text-primary-foreground/50 font-sans text-[10px] sm:text-xs mt-1 tabular-nums">
+                    {selectedIndex + 1} / {photos.length}
+                  </p>
+                </div>
                 <button
                   type="button"
                   onClick={(e) => toggleLike(selectedIndex, e)}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shrink-0"
+                  className="w-9 h-9 rounded-full bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shrink-0"
                   aria-label="กดหัวใจ"
                 >
                   <Heart
-                    size={18}
+                    size={16}
                     className={liked.has(selectedIndex) ? "text-primary" : "text-primary-foreground"}
-                    fill={liked.has(selectedIndex) ? "hsl(346, 60%, 55%)" : "none"}
+                    fill={liked.has(selectedIndex) ? "hsl(346, 55%, 52%)" : "none"}
                   />
                 </button>
               </div>
-              <p className="text-primary-foreground/60 font-sans text-xs sm:text-sm mt-1">
-                {selectedIndex + 1} / {photos.length}
-              </p>
             </div>
           </div>
         </div>

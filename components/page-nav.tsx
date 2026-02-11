@@ -2,13 +2,13 @@
 
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { Heart, Home, Mail, Camera, Sparkles, MessageCircleHeart, ArrowLeft } from "lucide-react"
+import { Home, Mail, Camera, Sparkles, Heart, MessageCircleHeart, ChevronLeft, ChevronRight } from "lucide-react"
 
 const routes = [
   { href: "/", icon: Home, label: "Home" },
-  { href: "/letter", icon: Mail, label: "จดหมาย" },
-  { href: "/gallery", icon: Camera, label: "รูปภาพ" },
-  { href: "/reasons", icon: Sparkles, label: "เหตุผล" },
+  { href: "/letter", icon: Mail, label: "จดหมายรัก" },
+  { href: "/gallery", icon: Camera, label: "ความทรงจำ" },
+  { href: "/reasons", icon: Sparkles, label: "เหตุผลที่รัก" },
   { href: "/scratch", icon: Heart, label: "ข้อความลับ" },
   { href: "/quiz", icon: MessageCircleHeart, label: "ควิซ" },
 ]
@@ -21,82 +21,88 @@ export function PageNav() {
   const currentIndex = routes.findIndex((r) => r.href === pathname)
   const prevPage = currentIndex > 0 ? routes[currentIndex - 1] : null
   const nextPage = currentIndex < routes.length - 1 ? routes[currentIndex + 1] : null
+  const currentRoute = routes[currentIndex]
 
   return (
     <>
-      {/* Top bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-5xl mx-auto flex items-center justify-between px-3 py-2.5 sm:px-4 sm:py-3">
+      {/* Top bar -- minimal */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl">
+        <div className="max-w-lg mx-auto flex items-center justify-between px-4 py-3 sm:px-5 sm:py-3.5">
           <Link
             href="/"
-            className="flex items-center gap-1.5 sm:gap-2 text-muted-foreground hover:text-foreground transition-colors font-sans text-xs sm:text-sm"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Back to home"
           >
-            <ArrowLeft size={14} />
-            <span>{"กลับ"}</span>
+            <ChevronLeft size={18} />
+            <Home size={14} />
           </Link>
 
-          <div className="flex items-center gap-1.5">
-            <Heart size={12} className="text-primary sm:[&]:w-[14px] sm:[&]:h-[14px]" fill="hsl(346, 60%, 55%)" />
-            <span className="font-serif text-xs sm:text-sm text-foreground">Valentine</span>
-          </div>
+          {/* Current page title */}
+          <span className="font-sans text-xs sm:text-sm text-foreground font-medium">
+            {currentRoute?.label}
+          </span>
 
-          {/* Nav dots -- always visible */}
-          <div className="flex items-center gap-1 sm:gap-1.5">
-            {routes.slice(1).map((route) => {
-              const isActive = pathname === route.href
-              return (
-                <Link
-                  key={route.href}
-                  href={route.href}
-                  className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-300 ${
-                    isActive
-                      ? "bg-primary scale-125"
-                      : "bg-border hover:bg-primary/40"
-                  }`}
-                  aria-label={route.label}
-                  title={route.label}
-                />
-              )
-            })}
-          </div>
+          {/* Page indicator */}
+          <span className="font-sans text-[10px] sm:text-xs text-muted-foreground tabular-nums">
+            {currentIndex}/{routes.length - 1}
+          </span>
+        </div>
+
+        {/* Progress bar */}
+        <div className="h-[2px] bg-border">
+          <div
+            className="h-full bg-primary transition-all duration-500 ease-out"
+            style={{ width: `${(currentIndex / (routes.length - 1)) * 100}%` }}
+          />
         </div>
       </nav>
 
-      {/* Bottom prev/next navigation */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-t border-border safe-area-bottom">
-        <div className="max-w-5xl mx-auto flex items-center justify-between px-3 py-2.5 sm:px-4 sm:py-3">
+      {/* Bottom prev/next */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
+        <div className="max-w-lg mx-auto flex items-center justify-between px-4 py-2.5 sm:px-5 sm:py-3">
           {prevPage ? (
             <Link
               href={prevPage.href}
-              className="flex items-center gap-1.5 sm:gap-2 text-muted-foreground hover:text-foreground transition-colors font-sans text-xs sm:text-sm active:scale-95"
+              className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors active:scale-95 py-1"
             >
-              <ArrowLeft size={12} />
-              {prevPage.label}
+              <ChevronLeft size={14} />
+              <span className="font-sans text-xs sm:text-sm">{prevPage.label}</span>
             </Link>
           ) : (
             <div />
           )}
 
-          {/* Current page label */}
-          <span className="font-sans text-[10px] sm:text-xs text-muted-foreground">
-            {routes[currentIndex]?.label}
-          </span>
+          {/* Dot indicators */}
+          <div className="flex items-center gap-1.5">
+            {routes.slice(1).map((route, i) => (
+              <Link
+                key={route.href}
+                href={route.href}
+                className={`rounded-full transition-all duration-300 ${
+                  currentIndex === i + 1
+                    ? "w-5 h-1.5 bg-primary"
+                    : "w-1.5 h-1.5 bg-border hover:bg-muted-foreground/40"
+                }`}
+                aria-label={route.label}
+              />
+            ))}
+          </div>
 
           {nextPage ? (
             <Link
               href={nextPage.href}
-              className="flex items-center gap-1.5 sm:gap-2 text-muted-foreground hover:text-foreground transition-colors font-sans text-xs sm:text-sm active:scale-95"
+              className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors active:scale-95 py-1"
             >
-              {nextPage.label}
-              <ArrowLeft size={12} className="rotate-180" />
+              <span className="font-sans text-xs sm:text-sm">{nextPage.label}</span>
+              <ChevronRight size={14} />
             </Link>
           ) : (
             <Link
               href="/"
-              className="flex items-center gap-1.5 sm:gap-2 text-primary hover:text-primary/80 transition-colors font-sans text-xs sm:text-sm active:scale-95"
+              className="flex items-center gap-1.5 text-primary hover:text-primary/80 transition-colors active:scale-95 py-1"
             >
-              {"กลับหน้าหลัก"}
-              <Home size={12} />
+              <span className="font-sans text-xs sm:text-sm font-medium">{"กลับหน้าหลัก"}</span>
+              <Home size={13} />
             </Link>
           )}
         </div>
