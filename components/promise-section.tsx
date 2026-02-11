@@ -21,7 +21,7 @@ export function PromiseSection() {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-20 text-center"
+      className="flex flex-col items-center justify-center px-6 py-12 text-center"
     >
       <div
         className={`max-w-xl transition-all duration-1000 ${

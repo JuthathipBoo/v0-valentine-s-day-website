@@ -42,9 +42,8 @@ export function LoveLetter() {
 
   return (
     <section
-      id="letter"
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-20"
+      className="flex flex-col items-center justify-center px-6 py-12"
     >
       <div
         className={`transition-all duration-1000 ${
