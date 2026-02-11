@@ -1,14 +1,33 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Heart } from "lucide-react"
+import {
+  Heart,
+  Mail,
+  Camera,
+  Sparkles,
+  MessageCircleHeart,
+  ChevronDown,
+} from "lucide-react"
+
+const navItems = [
+  { href: "#letter", icon: Mail, label: "จดหมาย" },
+  { href: "#gallery", icon: Camera, label: "รูปภาพ" },
+  { href: "#reasons", icon: Sparkles, label: "เหตุผล" },
+  { href: "#quiz", icon: MessageCircleHeart, label: "ควิซ" },
+]
 
 export function HeroSection() {
   const [visible, setVisible] = useState(false)
+  const [navVisible, setNavVisible] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 300)
-    return () => clearTimeout(timer)
+    const timer1 = setTimeout(() => setVisible(true), 300)
+    const timer2 = setTimeout(() => setNavVisible(true), 1200)
+    return () => {
+      clearTimeout(timer1)
+      clearTimeout(timer2)
+    }
   }, [])
 
   return (
@@ -54,9 +73,31 @@ export function HeroSection() {
           {"สำหรับคนพิเศษที่ทำให้ทุกวันเป็นวันแห่งความรัก"}
         </p>
 
+        {/* Interactive nav buttons */}
+        <div
+          className={`flex flex-wrap items-center justify-center gap-3 mb-6 transition-all duration-700 ${
+            navVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          {navItems.map((item, i) => {
+            const Icon = item.icon
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                className="group flex items-center gap-2 bg-card border border-border px-5 py-3 rounded-full font-sans text-sm text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                style={{ transitionDelay: `${i * 80}ms` }}
+              >
+                <Icon size={16} className="group-hover:scale-110 transition-transform" />
+                {item.label}
+              </a>
+            )
+          })}
+        </div>
+
         <a
           href="#letter"
-          className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-sans font-medium text-base hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-sans font-medium text-base hover:opacity-90 transition-opacity hover:shadow-lg"
         >
           <Heart size={18} fill="currentColor" />
           {"เปิดจดหมายรัก"}
@@ -64,18 +105,7 @@ export function HeroSection() {
       </div>
 
       <div className="absolute bottom-8 animate-bounce">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="hsl(346, 60%, 55%)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M12 5v14M5 12l7 7 7-7" />
-        </svg>
+        <ChevronDown size={28} className="text-primary" />
       </div>
     </section>
   )
