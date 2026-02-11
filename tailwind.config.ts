@@ -63,8 +63,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-sarabun)', 'sans-serif'],
-        serif: ['var(--font-playfair)', 'serif'],
+        sans: ['var(--font-itim)', 'sans-serif'],
+        serif: ['var(--font-caveat)', 'cursive'],
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -1,19 +1,19 @@
 import React from "react"
 import type { Metadata, Viewport } from "next"
-import { Playfair_Display, Sarabun } from "next/font/google"
+import { Itim, Caveat } from "next/font/google"
 
 import "./globals.css"
 import { FloatingHearts } from "@/components/floating-hearts"
 import { PageNav } from "@/components/page-nav"
 
-const _playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-})
-const _sarabun = Sarabun({
+const _itim = Itim({
   subsets: ["thai", "latin"],
-  weight: ["300", "400", "500", "700"],
-  variable: "--font-sarabun",
+  weight: "400",
+  variable: "--font-itim",
+})
+const _caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
 })
 
 export const metadata: Metadata = {

@@ -9,7 +9,6 @@ import {
   Sparkles,
   MessageCircleHeart,
   Clock,
-  Infinity,
   ArrowRight,
 } from "lucide-react"
 
@@ -55,20 +54,6 @@ const pages = [
     title: "เรื่องราวของเรา",
     desc: "ไทม์ไลน์ช่วงเวลาสำคัญที่มีด้วยกัน",
     color: "from-accent/20 to-primary/5",
-  },
-  {
-    href: "/love",
-    icon: Heart,
-    title: "ส่งความรักให้เธอ",
-    desc: "กดหัวใจส่งรัก กี่ครั้งก็ได้",
-    color: "from-primary/25 to-primary/5",
-  },
-  {
-    href: "/promise",
-    icon: Infinity,
-    title: "สัญญาจากใจ",
-    desc: "คำสัญญาที่ฉันมีให้เธอ ตลอดไป",
-    color: "from-accent/15 to-primary/10",
   },
 ]
 
