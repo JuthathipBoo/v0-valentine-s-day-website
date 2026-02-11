@@ -50,7 +50,7 @@ const pages = [
 
 ]
 
-export default function Page() {
+export default function HomePage() {
   const [visible, setVisible] = useState(false)
   const [cardsVisible, setCardsVisible] = useState(false)
 
