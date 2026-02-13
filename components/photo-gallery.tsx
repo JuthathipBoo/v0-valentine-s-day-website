@@ -7,12 +7,12 @@ import { Camera, ChevronLeft, ChevronRight, Heart, X } from "lucide-react"
 import Image from "next/image"
 
 const photos = [
-  { src: "/gallery/memory-1.jpg", caption: "เดินด้วยกันในทุก ๆ ทาง" },
-  { src: "/gallery/memory-2.jpg", caption: "คืนที่เงียบสงบ มีแค่เราสองคน" },
-  { src: "/gallery/memory-3.jpg", caption: "แม้ฝนจะตก เรายังมีกัน" },
-  { src: "/gallery/memory-4.jpg", caption: "พระอาทิตย์ตกที่สวยที่สุด" },
-  { src: "/gallery/memory-5.jpg", caption: "ช่วงเวลาเล็ก ๆ ที่มีค่ามาก" },
-  { src: "/gallery/memory-6.jpg", caption: "เต้นรำไปด้วยกันตลอดไป" },
+  { src: "/gallery/photo-1.jpg", caption: "เดินด้วยกันในทุก ๆ ทาง" },
+  { src: "/gallery/photo-2.jpg", caption: "คืนที่เงียบสงบ มีแค่เราสองคน" },
+  { src: "/gallery/photo-3.jpg", caption: "แม้ฝนจะตก เรายังมีกัน" },
+  { src: "/gallery/photo-4.jpg", caption: "พระอาทิตย์ตกที่สวยที่สุด" },
+  { src: "/gallery/photo-5.jpg", caption: "ช่วงเวลาเล็ก ๆ ที่มีค่ามาก" },
+  { src: "/gallery/photo-6.jpg", caption: "เต้นรำไปด้วยกันตลอดไป" },
 ]
 
 export function PhotoGallery() {
@@ -96,9 +96,8 @@ export function PhotoGallery() {
             key={photo.src}
             type="button"
             onClick={() => setSelectedIndex(index)}
-            className={`group relative aspect-[4/5] rounded-xl overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-lg active:scale-[0.97] ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            className={`group relative aspect-[4/5] rounded-xl overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-lg active:scale-[0.97] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
             style={{ transitionDelay: `${index * 80}ms` }}
           >
             <Image
