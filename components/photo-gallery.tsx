@@ -106,6 +106,7 @@ export function PhotoGallery(): React.JSX.Element {
               src={photo.src || "/placeholder.svg"}
               alt={photo.caption}
               fill
+              priority={index < 2}
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
