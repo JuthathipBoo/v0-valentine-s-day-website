@@ -2,7 +2,7 @@ import { ReasonsSection } from "@/components/reasons-section"
 import { PageWrapper } from "@/components/page-wrapper"
 
 export const metadata = {
-  title: "เหตุผลที่รักเบ๊บๆ | Valentine's Day",
+  title: "เหตุผลที่รักเธอ | Valentine's Day",
 }
 
 export default function ReasonsPage() {

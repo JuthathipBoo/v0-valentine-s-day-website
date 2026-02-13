@@ -6,7 +6,7 @@ import { Heart, Star, Sparkles, Sun, Coffee, Music } from "lucide-react"
 const reasons = [
   {
     icon: Heart,
-    title: "รอยยิ้มของเบ๊บๆ",
+    title: "รอยยิ้มของเธอ",
     front: "กดเพื่ออ่าน",
     back: "เค้าน่ะชอบตอนเบ๊บๆยิ้มมากๆเยย",
   },
@@ -81,7 +81,7 @@ export function ReasonsSection() {
           <Sparkles className="text-primary" size={22} />
         </div>
         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground mb-2 text-balance">
-          {"เหตุผลที่รักเบ๊บๆ"}
+          {"เหตุผลที่รักเธอ"}
         </h2>
         <p className="text-muted-foreground font-sans text-xs sm:text-sm font-light">
           {"กดการ์ดแต่ละใบเพื่ออ่านเหตุผล"}
@@ -100,8 +100,8 @@ export function ReasonsSection() {
                 refs.current[index] = el
               }}
               className={`transition-all duration-700 ease-out ${visibleCards.has(index)
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
                 }`}
               style={{
                 transitionDelay: `${index * 80}ms`,

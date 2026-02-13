@@ -5,22 +5,22 @@ import { Heart, MessageCircleHeart, RotateCcw } from "lucide-react"
 
 const questions = [
   {
-    question: "สิ่งที่เค้าชอบที่สุดเกี่ยวกับเบ๊บๆคืออะไร?",
+    question: "สิ่งที่ฉันชอบที่สุดเกี่ยวกับเธอคืออะไร?",
     options: ["รอยยิ้ม", "เสียงหัวเราะ", "ความใจดี", "ทุกอย่าง"],
     answer: 3,
   },
   {
-    question: "เค้าอยากไปเที่ยวกับเบ๊บๆที่ไหนมากที่สุด?",
-    options: ["ทะเล", "ภูเขา", "ต่างประเทศ", "ที่ไหนก็ได้ถ้ามีเบ๊บๆ"],
+    question: "ฉันอยากไปเที่ยวกับเธอที่ไหนมากที่สุด?",
+    options: ["ทะเล", "ภูเขา", "ต่างประเทศ", "ที่ไหนก็ได้ถ้ามีเธอ"],
     answer: 3,
   },
   {
-    question: "เค้าจะรักเบ๊บนานแค่ไหน?",
+    question: "ฉันจะรักเธอนานแค่ไหน?",
     options: ["1 ปี", "10 ปี", "100 ปี", "ตลอดไป"],
     answer: 3,
   },
   {
-    question: "อะไรคือเหตุผลที่เค้ารักเบ๊บๆ?",
+    question: "อะไรคือเหตุผลที่ฉันรักเธอ?",
     options: ["หน้าตา", "นิสัย", "ความเก่ง", "ไม่ต้องมีเหตุผล"],
     answer: 3,
   },
@@ -89,8 +89,9 @@ export function LoveQuiz() {
   return (
     <section ref={ref} className="px-5 py-10 sm:px-6 sm:py-16 max-w-md mx-auto">
       <div
-        className={`transition-all duration-1000 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+        className={`transition-all duration-1000 ease-out ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
       >
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10">
@@ -98,7 +99,7 @@ export function LoveQuiz() {
             <MessageCircleHeart className="text-primary" size={22} />
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground mb-2 text-balance">
-            {"เบ๊บๆรู้จักเค้าดีแค่ไหน?"}
+            {"เธอรู้จักฉันดีแค่ไหน?"}
           </h2>
           <p className="text-muted-foreground font-sans text-xs sm:text-sm font-light">
             {"ลองตอบคำถามเหล่านี้ดูสิ"}
@@ -128,8 +129,9 @@ export function LoveQuiz() {
                 {questions.map((_, i) => (
                   <div
                     key={`progress-${i}`}
-                    className={`h-1 flex-1 rounded-full transition-colors duration-500 ${i <= currentQ ? "bg-primary" : "bg-border"
-                      }`}
+                    className={`h-1 flex-1 rounded-full transition-colors duration-500 ${
+                      i <= currentQ ? "bg-primary" : "bg-border"
+                    }`}
                   />
                 ))}
               </div>
@@ -165,8 +167,9 @@ export function LoveQuiz() {
                       type="button"
                       onClick={() => handleSelect(i)}
                       disabled={selected !== null}
-                      className={`w-full text-left px-4 py-3 rounded-xl font-sans transition-all duration-300 active:scale-[0.98] ${optionStyle} ${selected === null ? "cursor-pointer" : "cursor-default"
-                        }`}
+                      className={`w-full text-left px-4 py-3 rounded-xl font-sans transition-all duration-300 active:scale-[0.98] ${optionStyle} ${
+                        selected === null ? "cursor-pointer" : "cursor-default"
+                      }`}
                     >
                       <span className="flex items-center gap-3">
                         <span className="w-6 h-6 rounded-full bg-background/40 flex items-center justify-center text-[10px] font-medium shrink-0">
@@ -196,10 +199,10 @@ export function LoveQuiz() {
 
               <h3 className="font-serif text-2xl sm:text-3xl text-foreground mb-2">
                 {score === 4
-                  ? "เย้ยย! ถูกกหมดเยยย"
+                  ? "เธอเข้าใจฉันที่สุดเลย!"
                   : score >= 2
-                    ? "เก่งมากกกก!"
-                    : "แหมะ ถูกไม่หมดได้ยังไงเนี่ยย"}
+                    ? "เธอรู้จักฉันดีมาก!"
+                    : "มาทำความรู้จักกันเพิ่มนะ"}
               </h3>
 
               <p className="text-muted-foreground font-sans text-xs mb-1 tabular-nums">
@@ -208,8 +211,8 @@ export function LoveQuiz() {
 
               <p className="font-sans text-primary text-sm sm:text-base mb-6 font-light">
                 {score === 4
-                  ? "รู้ใจเค้าสุดๆๆๆ"
-                  : "แต่ยังไงก็รักเบ๊บๆอยู่ดี"}
+                  ? "เธอคือคนที่รู้ใจฉันมากที่สุด"
+                  : "แต่ไม่ว่ายังไง ฉันก็รักเธอเสมอ"}
               </p>
 
               <button
