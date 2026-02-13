@@ -7,15 +7,15 @@ import { Camera, ChevronLeft, ChevronRight, Heart, X } from "lucide-react"
 import Image from "next/image"
 
 const photos = [
-  { src: "/gallery/photo-1.jpg", caption: "เดินด้วยกันในทุก ๆ ทาง" },
-  { src: "/gallery/photo-2.jpg", caption: "คืนที่เงียบสงบ มีแค่เราสองคน" },
-  { src: "/gallery/photo-3.jpg", caption: "แม้ฝนจะตก เรายังมีกัน" },
-  { src: "/gallery/photo-4.jpg", caption: "พระอาทิตย์ตกที่สวยที่สุด" },
-  { src: "/gallery/photo-5.jpg", caption: "ช่วงเวลาเล็ก ๆ ที่มีค่ามาก" },
-  { src: "/gallery/photo-6.jpg", caption: "เต้นรำไปด้วยกันตลอดไป" },
+  { src: "/gallery/photo-1.jpg", caption: "รักเบ๊บๆคับ" },
+  { src: "/gallery/photo-2.jpg", caption: "รักเบ๊บๆมากๆ" },
+  { src: "/gallery/photo-3.jpg", caption: "รักโอที่สุดดดด" },
+  { src: "/gallery/photo-4.jpg", caption: "รักโอตลอดปายยยย" },
+  { src: "/gallery/photo-5.jpg", caption: "จะอยู่กับโอคับ" },
+  { src: "/gallery/photo-6.jpg", caption: "จะอยู่ซื้อดอกไม้ไปให้เรื่อยๆเยย" },
 ]
 
-export function PhotoGallery() {
+export function PhotoGallery(): React.JSX.Element {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [liked, setLiked] = useState<Set<number>>(new Set())
   const [isVisible, setIsVisible] = useState(false)
@@ -92,10 +92,12 @@ export function PhotoGallery() {
       {/* Photo grid */}
       <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
         {photos.map((photo, index) => (
-          <button
+          <div
             key={photo.src}
-            type="button"
+            role="button"
+            tabIndex={0}
             onClick={() => setSelectedIndex(index)}
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedIndex(index) }}
             className={`group relative aspect-[4/5] rounded-xl overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-lg active:scale-[0.97] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             style={{ transitionDelay: `${index * 80}ms` }}
@@ -104,6 +106,7 @@ export function PhotoGallery() {
               src={photo.src || "/placeholder.svg"}
               alt={photo.caption}
               fill
+              priority={index < 2}
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
@@ -128,7 +131,7 @@ export function PhotoGallery() {
                 fill={liked.has(index) ? "hsl(346, 55%, 52%)" : "none"}
               />
             </button>
-          </button>
+          </div>
         ))}
       </div>
 
