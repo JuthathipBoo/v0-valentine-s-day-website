@@ -6,7 +6,7 @@ import { Heart, Star, Sparkles, Sun, Coffee, Music } from "lucide-react"
 const reasons = [
   {
     icon: Heart,
-    title: "รอยยิ้มของเธอ",
+    title: "รอยยิ้มของเบ๊บๆ",
     front: "กดเพื่ออ่าน",
     back: "เค้าน่ะชอบตอนเบ๊บๆยิ้มมากๆเยย",
   },
@@ -100,8 +100,8 @@ export function ReasonsSection() {
                 refs.current[index] = el
               }}
               className={`transition-all duration-700 ease-out ${visibleCards.has(index)
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
                 }`}
               style={{
                 transitionDelay: `${index * 80}ms`,
