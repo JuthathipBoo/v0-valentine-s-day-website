@@ -81,7 +81,7 @@ export function ReasonsSection() {
           <Sparkles className="text-primary" size={22} />
         </div>
         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground mb-2 text-balance">
-          {"เหตุผลที่รักเธอ"}
+          {"เหตุผลที่รักเบ๊บๆ"}
         </h2>
         <p className="text-muted-foreground font-sans text-xs sm:text-sm font-light">
           {"กดการ์ดแต่ละใบเพื่ออ่านเหตุผล"}
