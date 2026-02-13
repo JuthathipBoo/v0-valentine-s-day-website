@@ -113,9 +113,8 @@ export function ScratchCard() {
   return (
     <section ref={sectionRef} className="px-5 py-10 sm:px-6 sm:py-16 max-w-md mx-auto">
       <div
-        className={`transition-all duration-1000 ease-out ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
+        className={`transition-all duration-1000 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
       >
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10">
@@ -142,7 +141,7 @@ export function ScratchCard() {
               {"เธอคือคนที่ดีที่สุด"}
             </p>
             <p className="font-sans text-muted-foreground text-xs sm:text-sm leading-relaxed max-w-[240px] font-light">
-              {"ในจักรวาลที่กว้างใหญ่ ฉันโชคดีที่สุดที่ได้เจอเธอ"}
+              {"ดีใจที่เราได้มาเจอกันนะคับ เค้าจะตั้งใจรักเบ๊บๆเหมือนที่เบ๊บๆตั้งใจรักเค้านะคะ"}
             </p>
             <p className="font-serif text-base sm:text-lg text-primary mt-3">{"I love you 3000"}</p>
           </div>
@@ -150,9 +149,8 @@ export function ScratchCard() {
           {/* Scratch canvas */}
           <canvas
             ref={canvasRef}
-            className={`absolute inset-0 cursor-grab active:cursor-grabbing transition-opacity duration-700 ${
-              isRevealed ? "opacity-0 pointer-events-none" : "opacity-100"
-            }`}
+            className={`absolute inset-0 cursor-grab active:cursor-grabbing transition-opacity duration-700 ${isRevealed ? "opacity-0 pointer-events-none" : "opacity-100"
+              }`}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
