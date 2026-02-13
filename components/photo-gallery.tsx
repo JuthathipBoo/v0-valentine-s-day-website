@@ -92,10 +92,12 @@ export function PhotoGallery() {
       {/* Photo grid */}
       <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
         {photos.map((photo, index) => (
-          <button
+          <div
             key={photo.src}
-            type="button"
+            role="button"
+            tabIndex={0}
             onClick={() => setSelectedIndex(index)}
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedIndex(index) }}
             className={`group relative aspect-[4/5] rounded-xl overflow-hidden cursor-pointer transition-all duration-700 hover:shadow-lg active:scale-[0.97] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             style={{ transitionDelay: `${index * 80}ms` }}
@@ -128,7 +130,7 @@ export function PhotoGallery() {
                 fill={liked.has(index) ? "hsl(346, 55%, 52%)" : "none"}
               />
             </button>
-          </button>
+          </div>
         ))}
       </div>
 
