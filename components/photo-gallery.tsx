@@ -15,7 +15,7 @@ const photos = [
   { src: "/gallery/photo-6.jpg", caption: "เต้นรำไปด้วยกันตลอดไป" },
 ]
 
-export function PhotoGallery() {
+export function PhotoGallery(): React.JSX.Element {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [liked, setLiked] = useState<Set<number>>(new Set())
   const [isVisible, setIsVisible] = useState(false)
