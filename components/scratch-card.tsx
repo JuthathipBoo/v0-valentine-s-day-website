@@ -138,7 +138,7 @@ export function ScratchCard() {
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-card p-5 text-center">
             <Sparkles size={24} className="text-primary mb-3 opacity-50" />
             <p className="font-serif text-2xl sm:text-3xl text-primary mb-2 text-balance">
-              {"เธอคือคนที่ดีที่สุด"}
+              {"เบ๊บๆคือคนที่ดีที่สุด"}
             </p>
             <p className="font-sans text-muted-foreground text-xs sm:text-sm leading-relaxed max-w-[240px] font-light">
               {"ดีใจที่เราได้มาเจอกันนะคับ เค้าจะตั้งใจรักเบ๊บๆเหมือนที่เบ๊บๆตั้งใจรักเค้านะคะ"}
